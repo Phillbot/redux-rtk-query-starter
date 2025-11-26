@@ -1,0 +1,57 @@
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: rgba(15, 23, 42, 0.05);
+
+  &__header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: #fff;
+    z-index: 10;
+  }
+
+  &__logo {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    color: #0f172a;
+
+    &--active {
+      background: rgba(15, 23, 42, 0.07);
+      color: #0f172a;
+    }
+  }
+
+  &__lang-switcher {
+    padding: 0.35rem 0.5rem;
+    border-radius: 0.4rem;
+    border: 1px solid var(--color-border);
+    background: #fff;
+    color: #0f172a;
+  }
+
+  &__main {
+    flex: 1;
+    padding: 2rem 1.5rem;
+  }
+}

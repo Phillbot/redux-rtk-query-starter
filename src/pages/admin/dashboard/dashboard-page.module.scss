@@ -1,0 +1,14 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dashboard-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.dashboard-text {
+  color: #cbd5e1;
+}

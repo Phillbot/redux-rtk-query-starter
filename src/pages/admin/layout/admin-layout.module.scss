@@ -1,0 +1,23 @@
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #0f172a;
+  color: #e2e8f0;
+  flex-direction: column;
+
+  &__header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.1);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+  }
+
+  &__logo {
+    text-transform: uppercase;
+  }
+
+  &__main {
+    flex: 1;
+    padding: 1.5rem;
+  }
+}
