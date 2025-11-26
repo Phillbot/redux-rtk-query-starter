@@ -2,8 +2,13 @@ import { type ReactNode, useMemo, useState } from 'react';
 
 import { FeatureFlagsContext } from '@/shared/lib';
 import { storage } from '@/shared/lib/storage';
-import { FEATURE_FLAGS_STORAGE_KEY, resolvedFeatureFlags } from '@/shared/config/feature-flags';
-import type { FeatureFlag, FeatureFlags } from '@/shared/config/feature-flags';
+import {
+  FEATURE_FLAGS_STORAGE_KEY,
+  type FeatureFlag,
+  type FeatureFlags,
+  isFeatureFlagKey,
+  resolvedFeatureFlags,
+} from '@/shared/config/feature-flags';
 
 type FeatureFlagsProviderProps = Readonly<{
   children: ReactNode;
@@ -15,7 +20,8 @@ const parseOverrides = (raw: string): Partial<FeatureFlags> => {
     const parsed = JSON.parse(raw) as unknown;
     if (!parsed || typeof parsed !== 'object') return {};
     return Object.entries(parsed).reduce<Partial<FeatureFlags>>((acc, [key, value]) => {
-      if (key === 'healthCard' && typeof value === 'boolean') {
+      if (typeof value !== 'boolean') return acc;
+      if (isFeatureFlagKey(key)) {
         acc[key] = value;
       }
       return acc;
