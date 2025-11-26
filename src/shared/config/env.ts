@@ -7,7 +7,7 @@ const envSchema = z.object({
 
 const parsedEnv = envSchema.safeParse(import.meta.env);
 
-const DEFAULT_HTTPBIN_BASE_URL = 'https://httpbin.org';
+const DEFAULT_HTTPBIN_BASE_URL = 'https://httpbingo.org';
 
 const envBase =
   parsedEnv.success &&

@@ -19,7 +19,7 @@ Minimal React 19 boilerplate with a modular folder layout, Redux Toolkit instead
 - **Layout**: `app`, `pages`, `features`, `state`, `shared`—no FSD layers. Pages live in `src/pages` next to their styles; shared UI/logic sits in `features` or `shared`.
 - **State facade**: only hooks (`useCounter`, `useHealthCheck`) are exported from `@/state`. Treat them as adapters/public contract to the state layer; reducers, RTK Query API, and types stay internal. `StateProvider` is imported directly only inside `app/providers`.
 - **Swap the state layer**: replace Redux/RTK Query by editing `src/app/providers/app-providers.tsx` and the `src/state` contents; the rest of the code only touches the `@/state` adapter hooks. ESLint blocks deep imports (`@/state/*`).
-- **RTK Query demo**: health check against `https://httpbin.org/get` showcasing statuses, cache, and refetch.
+- **RTK Query demo**: health check against `https://httpbingo.org/get` showcasing statuses, cache, and refetch.
 - **Styling**: global SCSS + Tailwind utilities. Write kebab-case selectors in `.module.scss` with nested BEM (`.block { &__elem { ... } &__elem--mod { ... } }`); camelCase typings are generated to `src/__generated__/styles` by `vite-plugin-sass-dts`.
 - **Utilities**: `cn` for class merging; `handy-ts-tools` for type guards; `zod` for env/data schemas; `nuqs` re-exported for query params.
 - **Testing & playground**: Vitest + Testing Library; Ladle stories under `*.stories.tsx`.
@@ -89,9 +89,16 @@ Install dependencies once with `pnpm install`, then use:
 
 ## API layer
 
-- `src/shared/api/base-query.ts` — `createBaseQuery` over `fetchBaseQuery` with a stubbed auth-header hook; `API_BASE_URL` comes from `VITE_API_BASE_URL` (fallback to `https://httpbin.org`).
+- `src/shared/api/base-query.ts` — `createBaseQuery` over `fetchBaseQuery` with a stubbed auth-header hook; `API_BASE_URL` comes from `VITE_API_BASE_URL` (fallback to `https://httpbingo.org`).
 - `src/shared/api/error-reporter.ts` — centralized error reporter; `ErrorBoundary` reports here. Swap `setErrorReporter` for Sentry/etc.
-- `src/state/health/health-api.ts` — timed wrapper around the base query hitting the httpbin placeholder endpoint.
+- `src/state/health/health-api.ts` — timed wrapper around the base query hitting the httpbingo placeholder endpoint.
+
+## Telemetry
+
+- Configure `VITE_TELEMETRY_ENABLED` + `VITE_TELEMETRY_URL` to send errors/metrics to your endpoint. `VITE_WEB_VITALS_ENABLED` + the `webVitals` feature flag control whether web-vitals are emitted. By default telemetry is off and falls back to console logging.
+- `reportError` already pipes errors through the telemetry sender; extend `telemetry.sendMetricTelemetry` for custom signals.
+- Quick local test (dev server): in the browser console run `import('/src/shared/lib/telemetry.ts').then(({ sendMetricTelemetry }) => sendMetricTelemetry('metric.test', { value: 1 }))` and check Network/console.
+- Web Vitals: `initWebVitals` (runs only in production when telemetry, `VITE_WEB_VITALS_ENABLED`, and the `webVitals` flag are enabled) collects LCP/INP/CLS/TTFB and sends them via telemetry under `web-vitals.<metric>`.
 
 ## Error handling & guards
 

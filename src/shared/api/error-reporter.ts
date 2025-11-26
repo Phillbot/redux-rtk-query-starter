@@ -1,5 +1,7 @@
 import { isErrorLike } from 'handy-ts-tools';
 
+import { sendErrorTelemetry } from '@/shared/lib/telemetry';
+
 type ErrorReporter = (error: unknown, context?: Record<string, unknown>) => void;
 
 const logToConsole: ErrorReporter = (error, context) => {
@@ -15,5 +17,6 @@ export const setErrorReporter = (custom: ErrorReporter) => {
 
 export const reportError = (error: unknown, context?: Record<string, unknown>) => {
   const payload = isErrorLike(error) ? error : new Error('Unknown error');
+  void sendErrorTelemetry(payload.message, { ...context, stack: payload.stack });
   reporter(payload, context);
 };

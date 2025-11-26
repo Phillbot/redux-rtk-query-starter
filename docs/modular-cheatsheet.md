@@ -44,7 +44,7 @@ This template keeps only four top-level areas:
 
 ## API base URL
 
-- Set `VITE_API_BASE_URL` in `.env` (see `.env.example`). Falls back to `https://httpbin.org`.
+- Set `VITE_API_BASE_URL` in `.env` (see `.env.example`). Falls back to `https://httpbingo.org`.
 - API base query in `shared/api/base-query.ts` (header stub). Errors are reported via `shared/api/error-reporter`.
 - Keep DTO → domain mappers next to the endpoint (e.g., `state/<domain>/mappers.ts`). Validate with Zod.
 
