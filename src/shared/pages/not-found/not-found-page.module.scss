@@ -1,0 +1,21 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2rem 1rem;
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 900;
+  }
+
+  &__text {
+    color: var(--color-muted);
+  }
+
+  &__link {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,27 @@
+.button {
+  border-radius: 0.75rem;
+  padding: 0.65rem 1.5rem;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &_primary {
+    background-color: var(--color-primary);
+    color: white;
+    box-shadow: 0 12px 30px rgba(14, 165, 233, 0.35);
+  }
+
+  &_outline {
+    border: 1px solid var(--color-border);
+    color: #0f172a;
+    background-color: transparent;
+  }
+
+  &_ghost {
+    background-color: rgba(15, 23, 42, 0.05);
+    color: var(--color-muted);
+  }
+}

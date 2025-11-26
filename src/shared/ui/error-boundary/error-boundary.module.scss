@@ -1,0 +1,17 @@
+.error-boundary {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+
+  &__title {
+    font-weight: 800;
+    color: #991b1b;
+  }
+
+  &__text {
+    color: var(--color-muted);
+  }
+}

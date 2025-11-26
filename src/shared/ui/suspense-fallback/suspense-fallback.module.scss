@@ -1,0 +1,26 @@
+.suspense-fallback {
+  width: 100%;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  color: var(--color-muted);
+
+  &__spinner {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.75rem;
+    border: 3px solid rgba(14, 165, 233, 0.15);
+    border-top-color: #0ea5e9;
+    animation: spin 0.9s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
